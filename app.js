@@ -8,7 +8,11 @@ var url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1
 
     fetch(url).then((res)=>res.json()).
     then((data)=>{
-        document.getElementById('output').innerHTML=`<h3 class="">${data.text[0]}</h3>`;   
+        if(data.code==404){
+            document.getElementById('output').innerHTML=`<h3 class="">API Limit Exceeded</h3>`;
+        }else{
+            document.getElementById('output').innerHTML=`<h3 class="">${data.text[0]}</h3>`; 
+        }   
     });
       // word.value=''; 
 }
